@@ -1,5 +1,7 @@
 
 public class FizzBuzz {
+    private static final int rangeMin=1;
+    private static final int rangeMax=100;
 
     /**
      * This method accepts the numbers from 1 to 100 and returns them as a String.
@@ -13,7 +15,33 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the number is not in the 1-100 range.
      */
     public String toFizzBuzzString(int number) {
-        return ""; // TODO: implement me
+
+        if(number<rangeMin || number>rangeMax){
+            throw new IllegalArgumentException("Out of bound");
+        }
+
+        String result= String.valueOf(number);
+
+        switch (number%3){
+            case 0: result="Fizz";
+                    switch (number%5){
+                        case 0: result+="Buzz";
+                            break;
+
+                        }
+            default: break;
+        }
+        switch (number%5){
+            case 0: result="Buzz";
+                switch (number%3){
+                    case 0: result="Fizz"+result;
+                        break;
+
+                }
+            default: break;
+        }
+
+        return result;
     }
 
 }

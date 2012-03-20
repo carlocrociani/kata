@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class ProjectEulerNumberOne {
 
@@ -13,8 +14,27 @@ public class ProjectEulerNumberOne {
      *
      * @return the sum of all the multiples of 3 or 5 below 1000
      */
+    private static int MAX=1000;
+    private static int THREE=3;
+    private static int FIVE=5;
+    Set<Integer> multiples = new HashSet<Integer> ();
     public int getResult() {
-        return 0; // TODO: implement me
+         int result=0;
+        for(int i = 1; i<MAX; i++){
+            if(THREE*i < MAX){
+                multiples.add(THREE*i);
+            }
+            if(FIVE*i < MAX){
+                multiples.add(FIVE*i);
+            }
+        }
+
+        for (Integer integer : multiples) {
+            result += integer;
+        }
+
+
+        return result;
     }
     
 }

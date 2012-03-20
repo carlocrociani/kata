@@ -1,5 +1,10 @@
+import sun.misc.Regexp;
+
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class SoftwareVersionComparator implements Comparator<String> {
 
@@ -22,7 +27,50 @@ public class SoftwareVersionComparator implements Comparator<String> {
      */
     @Override
     public int compare(String version1, String version2) {
-        return 42; // TODO: implement me
+
+        int result = 0 ;
+
+        StringTokenizer v1 = new StringTokenizer(version1,".");
+
+        StringTokenizer v2 = new StringTokenizer(version2,".");
+
+        String token1= v1.nextToken();
+
+        String token2= v2.nextToken();
+
+        result = compareDeeper(result, v1, v2, token1, token2);
+
+        return result;
     }
 
+    private int compareDeeper(int result, StringTokenizer v1, StringTokenizer v2, String token1, String token2) {
+
+        result = Integer.parseInt(token1)-Integer.parseInt(token2);
+
+        if(result==0){
+            //go deeper
+            if(!v1.hasMoreTokens() && !v2.hasMoreTokens()){
+                //final
+                return result;
+
+            }
+            if(v1.hasMoreTokens() && !v2.hasMoreTokens()){
+                //go deeper
+                return compareDeeper(result,v1,v2,v1.nextToken(),"0");
+
+            }
+            if(!v1.hasMoreTokens() && v2.hasMoreTokens()){
+                //go deeper
+                return compareDeeper(result,v1,v2,"0",v2.nextToken());
+
+            }
+            if(v1.hasMoreTokens() && v2.hasMoreTokens()){
+                //go deeper
+                 return compareDeeper(result,v1,v2,v1.nextToken(),v2.nextToken());
+            }
+        }
+
+
+        return result;
+    }
 }
