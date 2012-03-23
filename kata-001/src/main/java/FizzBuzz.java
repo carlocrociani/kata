@@ -22,22 +22,23 @@ public class FizzBuzz {
 
         String result= String.valueOf(number);
 
+        switch (number%15){
+            case 0: result="FizzBuzz";
+                    return result;
+
+        }
+
         switch (number%3){
             case 0: result="Fizz";
-                    switch (number%5){
-                        case 0: result+="Buzz";
-                            break;
+                    break;
 
-                        }
             default: break;
         }
+
         switch (number%5){
             case 0: result="Buzz";
-                switch (number%3){
-                    case 0: result="Fizz"+result;
-                        break;
+                    break;
 
-                }
             default: break;
         }
 
