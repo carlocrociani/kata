@@ -20,7 +20,7 @@ public class ProjectEulerNumberOne {
     Set<Integer> multiples = new HashSet<Integer> ();
     public int getResult() {
          int result=0;
-        for(int i = 1; i<MAX; i++){
+        for(int i = 1; i*Math.min(THREE,FIVE)<MAX  ; i++){
             if(THREE*i < MAX){
                 multiples.add(THREE*i);
             }
